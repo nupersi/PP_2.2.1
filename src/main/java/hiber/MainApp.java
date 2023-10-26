@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MainApp {
-   public static void main(String[] args) throws SQLException {
+   public static void main(String[] args) {
       AnnotationConfigApplicationContext context =
               new AnnotationConfigApplicationContext(AppConfig.class);
 
@@ -23,13 +23,14 @@ public class MainApp {
 
       User user1 = new User("User1", "Lastname1", "user1@mail.ru");
       User user2 = new User("User2", "Lastname2", "user2@mail.ru");
+
       user1.setUserCar(new Car("Urus", 123));
       user2.setUserCar(new Car("Corolla", 124));
 
       System.out.println("Добавление пользователей в таблицу\n");
       userService.add(user1);
       userService.add(user2);
-      userService.add(new User());
+//      userService.add(new User());//todo ..сбивает с толку
 
       System.out.println("Вывод всех пользователей таблицы \"users\"\n");
       userService.listUsers().forEach(System.out::println);

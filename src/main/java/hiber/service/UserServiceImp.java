@@ -16,10 +16,12 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService {
 
+   //todo избавляемся от import-ов лишних ..codeStyle (можно начать использовать hotKeys)
+
    @Autowired
    private UserDao userDao;
 
-   @Transactional
+   @Transactional//todo - Transaction выносим над классом, над методами, где это необходимо проставляем Transaction c параметром readOnly, например
    @Override
    public void add(User user) {
       userDao.add(user);
@@ -33,8 +35,7 @@ public class UserServiceImp implements UserService {
 
    @Transactional(readOnly = true)
    @Override
-   public List<User> getDrivers(int series, String model) {
+   public List<User> getDrivers(int series, String model) {//todo отказываемся от примитивов..
       return userDao.getDrivers(series,model);
    }
-
 }
